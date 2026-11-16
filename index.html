@@ -32,7 +32,6 @@ code{font-size:14px}
 <b>Как пользоваться</b>
 <span>Дай агенту ссылку на <a href="slovar.json">slovar.json</a>: пусть перед озвучкой подставляет слова оттуда. Знак ударения стоит после ударной гласной (символ U+0301).</span>
 <span>Скрипт с моделью RuAccent расставит ударения во всём тексте, а словарь поправит её ошибки: <a href="https://github.com/llamochka/udareniya">github.com/llamochka/udareniya</a>.</span>
-<span>Нашёл своё слово? <a href="https://github.com/llamochka/udareniya/issues/new?template=slovo.yml">Предложи его</a>. Бот сверит его с Викисловарём, автор словаря подтвердит.</span>
 </section>
 <p>Данные: CC BY-SA 4.0. Сверка по <a href="https://ru.wiktionary.org">Викисловарю</a>.</p>
 </main>
@@ -42,7 +41,7 @@ const show=w=>{const i=w.indexOf(MARK);return i<1?esc(w):esc(w.slice(0,i-1))+"<b
 fetch("slovar.json").then(r=>r.json()).then(d=>{
  const s=Object.entries(d["слова"]);document.getElementById("n").textContent="Сейчас слов: "+s.length+".";
  const draw=q=>{const r=s.filter(([k])=>!q||k.includes(q));
-  document.getElementById("t").innerHTML=r.map(([k,e])=>`<tr><td class="u">${show(e["ударение"])}</td><td class="n">${esc(e["заметка"]||"")}</td></tr>`).join("")||'<tr><td colspan="2">Такого слова пока нет. Предложи его по ссылке ниже.</td></tr>'};
+  document.getElementById("t").innerHTML=r.map(([k,e])=>`<tr><td class="u">${show(e["ударение"])}</td><td class="n">${esc(e["заметка"]||"")}</td></tr>`).join("")||'<tr><td colspan="2">Такого слова пока нет.</td></tr>'};
  draw("");document.getElementById("q").addEventListener("input",e=>draw(e.target.value.trim().toLowerCase().replace(/ё/g,"ё")));
 }).catch(()=>{document.getElementById("t").innerHTML='<tr><td colspan="2">Не загрузился slovar.json. Обнови страницу.</td></tr>'});
 </script>
