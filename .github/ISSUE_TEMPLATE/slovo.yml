@@ -1,0 +1,27 @@
+name: Предложить слово
+description: Слово, в котором ИИ-озвучка ставит ударение не туда
+title: "Слово: "
+labels: ["слово"]
+body:
+  - type: input
+    id: slovo
+    attributes:
+      label: Слово, как пишется
+      placeholder: катка
+    validations:
+      required: true
+  - type: input
+    id: udarenie
+    attributes:
+      label: То же слово со знаком ударения
+      description: "Знак ставится после ударной гласной. Можно вместо знака написать ударную гласную большой буквой: кАтка."
+      placeholder: ка́тка
+    validations:
+      required: true
+  - type: textarea
+    id: gde
+    attributes:
+      label: Где озвучка ошиблась
+      description: Модель (ElevenLabs, другая) и фраза целиком. Помогает понять омографы.
+    validations:
+      required: true
